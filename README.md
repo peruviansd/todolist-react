@@ -35,12 +35,13 @@
 #### JavaScript
 
 - The basics like varibles, functions, arrays,etc, array methods.
+- LocalStorage
 
 #### React
 
-- How to create componentes, props, useState.
+- How to create componentes, props, useState, context.
 - Styled Components.
-
+- Custom Hooks.
 
 ## Author
 

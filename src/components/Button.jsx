@@ -16,15 +16,14 @@ export const MyButton = styled.button`
   }
 `;
 
-const Button = ({ name, taskId, title }) => {
-  const { setList, setTask, setUpdate } = useContext(DataContext);
+const Button = ({ name, task }) => {
+  const { setTask, setIsUpdateClicked, deleteTask } = useContext(DataContext);
   const handleDelete = () => {
-    if (confirm("are you sure?"))
-      setList((prev) => prev.filter((task) => task.id != taskId));
+    if (confirm("are you sure?")) deleteTask(task.id);
   };
   const handleUpdate = () => {
-    setTask(title);
-    setUpdate(taskId);
+    setTask(task.title);
+    setIsUpdateClicked(task.id);
   };
 
   const fn = name === "Delete" ? handleDelete : handleUpdate;

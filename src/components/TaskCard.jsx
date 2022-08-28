@@ -23,13 +23,13 @@ const MyCardStyled = styled.div`
   }
 `;
 
-export const TaskCard = ({ id, title }) => {
+export const TaskCard = (task) => {
   return (
     <MyCardStyled>
-      <div>{title} </div>
+      <div>{task.title} </div>
       <div>
-        <Button name="Update" title={title} taskId={id} />{" "}
-        <Button name="Delete" taskId={id} />
+        <Button name="Update" task={task} />{" "}
+        <Button name="Delete" task={task} />
       </div>
     </MyCardStyled>
   );

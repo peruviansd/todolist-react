@@ -24,21 +24,27 @@ const MyFormSyled = styled.form`
 `;
 
 export const TaskForm = () => {
-  const { task, setTask, setList, update, setUpdate } = useContext(DataContext);
+  const {
+    task,
+    setTask,
+    addToList,
+    isUpdateClicked,
+    setIsUpdateClicked,
+    updateTask,
+  } = useContext(DataContext);
   const handleClick = (e) => {
     e.preventDefault();
 
-    if (update) {
-      const taskToUpdate = update;
-      setList((prevList) =>
-        prevList.map((t) => (t.id === taskToUpdate ? { ...t, title: task } : t))
-      );
-      setUpdate(false);
+    if (isUpdateClicked) {
+      const taskIdToUpdate = isUpdateClicked;
+      const taskToUpdate = { id: taskIdToUpdate, title: task };
+      updateTask(taskToUpdate);
+      setIsUpdateClicked(false);
       setTask("");
     } else {
       const newTask = { id: Date.now(), title: task };
       if (task != "") {
-        setList((prev) => [newTask, ...prev]);
+        addToList(newTask);
         setTask("");
       }
     }
@@ -65,7 +71,7 @@ export const TaskForm = () => {
         color="#198DDD"
         style={{ fontSize: "18px", color: "white" }}
       >
-        {!update ? "+" : "Upgrade"}
+        {!isUpdateClicked ? "+" : "Upgrade"}
       </MyButton>
     </MyFormSyled>
   );
